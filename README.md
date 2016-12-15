@@ -7,7 +7,7 @@ It needs a **spec** and a **configuration** file
 
 ## Karma
 Karma is the perfect tool for **unit testing**
-[Read more about angular testing](docs/more_wordsmdh://www.yearofmoo.com/2013/09/advanced-testing-and-debugging-in-angularjs.html)
+[Read more about angular testing](https://www.yearofmoo.com/2013/09/advanced-testing-and-debugging-in-angularjs.html)
 ```
 npm install --save-dev karma [PLUGINS THE APP NEEDS]
 ```
