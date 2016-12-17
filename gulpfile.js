@@ -1,4 +1,4 @@
-const gulp = rquire('gulp');
+const gulp = require('gulp');
 const browserSync = require('browser-sync');
 const karma = require('karma');
 const server = require('gulp-live-server');
@@ -9,18 +9,15 @@ gulp.task('server', function () {
 	live.start();
 });
 	 
-gulp.task('serve', ['serve'], function(){
+gulp.task('serve', ['server'], function(){
 	browserSync.init({
 		notify: false,
-		port: 8080,
-		server: {
-			baseDir: ['app'],
-			routes: {
-				'/bower_components':'bower_components',
-			}
-		}
+		port: 8081,
+		proxy: 'localhost:8080'
 	});
 	gulp.watch(['app/**.*'])
 		.on('change', browserSync.reload);
 });
+
+gulp.task('default',['serve']);
 

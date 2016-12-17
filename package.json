@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-	"start": "node server.js"
+    "start": "nodemon server.js"
   },
   "author": "Vadim Melenciuc",
   "license": "ISC",
@@ -18,7 +18,8 @@
     "karma-firefox-launcher": "^1.0.0",
     "karma-mocha": "^1.3.0",
     "karma-phantomjs-launcher": "^1.0.2",
-    "mocha": "^3.2.0"
+    "mocha": "^3.2.0",
+    "nodemon": "^1.11.0"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
