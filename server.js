@@ -1,10 +1,31 @@
 const express = require('express');
+const path = require('path');
+const fs = require('fs');
+const bodyParser = require('body-parser');
 
 var app = express();
 
-app.get('/', function (req,res) {
-	console.log('starting express server');
-	res.status(200)
-		.end('hello');
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json(true));
+
+var baseRouter = new express.Router();
+var port = process.env.PORT || 8080;
+
+baseRouter.use(function(req,res,next){
+	console.log('baseRouter working');
+	next();
 });
-app.listen(4000);
+
+baseRouter.route('/')
+	.get(function (req,res) {
+		res.sendFile(path.join(__dirname+'/app/index.html'));
+	});
+
+app.use('/', baseRouter);
+app.use(express.static(path.join(__dirname+'/app/public')));
+app.use('/componentes', express.static(path.join(__dirname+'/bower_components')))
+
+app.listen(port, function () {
+	console.log('port in action: ', port);
+});
+
