@@ -1,4 +1,6 @@
+bower_components
 .tern-project
+coverage
 *.swp
 *.swo
 gs

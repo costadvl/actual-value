@@ -22,10 +22,10 @@ baseRouter.route('/')
 	});
 
 app.use('/', baseRouter);
-app.use(express.static(path.join(__dirname+'/app/public')));
+app.use('/public', express.static(path.join(__dirname+'/app/public')));
 app.use('/componentes', express.static(path.join(__dirname+'/bower_components')))
 
-app.listen(port, function () {
+app.listen(9000, function () {
 	console.log('port in action: ', port);
 });
 
