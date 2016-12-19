@@ -11,14 +11,27 @@ Karma is the perfect tool for **unit testing**
 ```
 npm install --save-dev karma [PLUGINS THE APP NEEDS]
 ```
-
+###Configuration file
 The connecton between your project and karma is the **configuration** file.
 You can generate it by:
 ```
 karma init my.conf.js
 ```
+Or create your own one. [Karma configuration file documentation](http://karma-runner.github.io/1.0/config/configuration-file.html)
 
-For terminal use of karma isnstall:
+###Istambul for testing coverage
+JavaScript code coverage tool that computes statement, line, function and branch.
+```
+npm install --save-dev istanbul karma-coverage
+```
+In the karma configuration file you wil have to specify the reporter, coverageReporter and the files options. [Read more about preprocessors](https://karma-runner.github.io/1.0/config/preprocessors.html)
+
+In case you whant to run istambul coverage with mocha you will have to install some extra dependecies.
+```
+npm install --save-dev karma-mocha karma-mocha-reporter 
+```
+
+For terminal use of karma install:
 ```
 npm install -g karma-cli
 ```
