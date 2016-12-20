@@ -7,6 +7,7 @@ const protractor = require('gulp-protractor').protractor;
 
 gulp.task('server', function() {
 	var live = new server('server.js');
+	live.stop();
 	live.start();
 });
 
@@ -17,8 +18,8 @@ gulp.task('serve', ['server'], function() {
 		server: {
 			baseDir: ['app'],
 			routes: {
-				'/browser_components': 'components',
-				'/app/public': 'public'
+				'/public': 'app/public',
+				'/components': 'bower_components'
 			}
 		}
 	});
@@ -34,8 +35,9 @@ gulp.task('serve-test', function() {
 		server: {
 			baseDir: ['test', 'app'],
 			routes: {
-				'/bower_components': 'components',
-				'/app/public': 'public'
+				'/public': 'app/public',
+				'/components': 'bower_components',
+				'/bower_components': 'bower_components'
 			}
 		}
 	})

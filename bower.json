@@ -1,0 +1,23 @@
+{
+  "name": "actual-value",
+  "description": "startup project",
+  "main": "index.js",
+  "authors": [
+    "Vadim Melenciuc"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/costadvl/actual-value",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-mocks": "^1.6.0",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "angular": "^1.6.0"
+  }
+}

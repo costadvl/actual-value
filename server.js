@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json(true));
 
 var baseRouter = new express.Router();
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 9000;
 
 baseRouter.use(function(req,res,next){
 	console.log('baseRouter working');
@@ -23,9 +23,9 @@ baseRouter.route('/')
 
 app.use('/', baseRouter);
 app.use('/public', express.static(path.join(__dirname+'/app/public')));
-app.use('/componentes', express.static(path.join(__dirname+'/bower_components')))
+app.use('/components', express.static(path.join(__dirname+'/bower_components')))
 
-app.listen(9000, function () {
+app.listen(port, function () {
 	console.log('port in action: ', port);
 });
 
