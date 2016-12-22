@@ -2,8 +2,19 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 var app = express();
+
+var URIusers = 'mongodb://localhost:27017/entities';
+var dbConnection = mongoose.connection;
+// manage db connection
+mongoose.connect(URIusers);
+dbConnection.on('error', console.error.bind(console, 'an error has ocured: '));
+dbConnection.on('open', function () {
+	console.log('connected');
+})
+
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json(true));

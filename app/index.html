@@ -6,7 +6,10 @@
 	<script src="components/angular/angular.js"></script>
 	<title></title>
 </head>
-<body>
-	<p>hello!</p>
+<body ng-app="theAppModule">
+	<div ng-controller="baseCopntroller as base">
+		<p>{{base.baseModel}}</p>
+	</div>
+
 </body>
 </html>
