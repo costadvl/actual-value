@@ -3,6 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const routes = require('./routes');
 
 var app = express();
 
@@ -19,7 +20,7 @@ dbConnection.on('open', function () {
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json(true));
 
-var baseRouter = new express.Router();
+var baseRouter = express.Router();
 var port = process.env.PORT || 9000;
 
 baseRouter.use(function(req,res,next){
@@ -33,6 +34,7 @@ baseRouter.route('/')
 	});
 
 app.use('/', baseRouter);
+app.use('/api', routes);
 app.use('/public', express.static(path.join(__dirname+'/app/public')));
 app.use('/components', express.static(path.join(__dirname+'/bower_components')))
 

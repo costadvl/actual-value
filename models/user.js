@@ -32,6 +32,13 @@ schemaUser.pre('save', function (next) {
 	});
 });
 
+schemaUser.methods.comparePassword = function (candidatePassword, cb) {
+	bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
+		if (err) return cb(err);
+		cb(null, isMatch);
+	})
+}
+
 var modelUser = mongoose.model('User', schemaUser);
 
 module.exports = modelUser;

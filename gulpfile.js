@@ -15,15 +15,16 @@ gulp.task('serve', ['server'], function() {
 	browserSync.init({
 		notify: false,
 		port: 8081,
-		server: {
-			baseDir: ['app'],
-			routes: {
-				'/public': 'app/public',
-				'/components': 'bower_components'
-			}
-		}
+		proxy: 'localhost:9000'
+		//server: {
+			//baseDir: ['app'],
+			//routes: {
+				//'/public': 'app/public',
+				//'/components': 'bower_components'
+			//}
+		//}
 	});
-	gulp.watch(['app/**/*.*'])
+	gulp.watch(['app/**/*.*','server.js', 'routes/**/*.*'])
 		.on('change', browserSync.reload);
 });
 
