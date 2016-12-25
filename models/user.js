@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 const SALT_WORK_FACTOR = 10;
+const passportLocalMongoose = require('passport-local-mongoose');
 
 var schemaUser = new Schema({
 	name: String,
@@ -38,6 +39,8 @@ schemaUser.methods.comparePassword = function (candidatePassword, cb) {
 		cb(null, isMatch);
 	})
 }
+
+schemaUser.plugin(passportLocalMongoose);
 
 var modelUser = mongoose.model('User', schemaUser);
 

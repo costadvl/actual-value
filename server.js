@@ -4,6 +4,8 @@ const fs = require('fs');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const routes = require('./routes');
+const passport = require('passport');
+const localStrategy = require('passport-local').Strategy;
 
 var app = express();
 
@@ -19,6 +21,17 @@ dbConnection.on('open', function () {
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json(true));
+app.use(express.cookieParser('your secret here'));
+app.use(express.session());
+app.use(passport.initialize());
+app.use(passport.session());
+
+//passport config
+var Account = require('./models/account');
+passport.use(new LocalStrategy(Account.authenticate()));
+passport.serializeUser(Account.serializeUser());
+passport.deserializeUser(Account.deserializeUser());
+
 
 var baseRouter = express.Router();
 var port = process.env.PORT || 9000;
