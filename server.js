@@ -1,37 +1,32 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
-const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const routes = require('./routes');
 const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 
-var app = express();
-
-var URIusers = 'mongodb://localhost:27017/entities';
+var URIusers = 'mongodb://localhost:27017/actualValue';
 var dbConnection = mongoose.connection;
 // manage db connection
 mongoose.connect(URIusers);
 dbConnection.on('error', console.error.bind(console, 'an error has ocured: '));
 dbConnection.on('open', function () {
 	console.log('connected');
-})
+});
 
+const models = require('./models');
+const routes = require('./routes');
+const middleware = require('./middleware');
 
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json(true));
-app.use(express.cookieParser('your secret here'));
-app.use(express.session());
-app.use(passport.initialize());
-app.use(passport.session());
+// middleware
+var app = express();
+middleware(app);
 
 //passport config
-var Account = require('./models/account');
-passport.use(new LocalStrategy(Account.authenticate()));
+var Account = require('./models/user');
+passport.use(new localStrategy(Account.authenticate()));
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
-
 
 var baseRouter = express.Router();
 var port = process.env.PORT || 9000;
