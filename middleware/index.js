@@ -9,9 +9,11 @@ module.exports = function(app) {
 		extended: true
 	}));
 	app.use(bodyParser.json(true));
-	app.use(cookieParser('your secret here'));
-	app.use(session());
+	app.use(session({
+		secret: 'some-secrete-code',
+		resave: false,
+		saveUninitialized: true
+	}));
 	app.use(passport.initialize());
 	app.use(passport.session());
-
 }
