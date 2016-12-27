@@ -23,10 +23,10 @@ var app = express();
 middleware(app);
 
 //passport config
-var Account = require('./models/user');
-passport.use(new localStrategy(Account.authenticate()));
-passport.serializeUser(Account.serializeUser());
-passport.deserializeUser(Account.deserializeUser());
+//var Account = require('./models/user');
+//passport.use(new localStrategy(Account.authenticate()));
+//passport.serializeUser(Account.serializeUser());
+//passport.deserializeUser(Account.deserializeUser());
 
 var baseRouter = express.Router();
 var port = process.env.PORT || 9000;

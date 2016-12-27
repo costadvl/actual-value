@@ -40,7 +40,7 @@ var schemaUser = new Schema({
 	//})
 //}
 
-schemaUser.plugin(passportLocalMongoose);
+//schemaUser.plugin(passportLocalMongoose);
 
 
 module.exports = mongoose.model('User', schemaUser);
