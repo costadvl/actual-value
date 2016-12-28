@@ -2,12 +2,14 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="public/base-style.css">
+	<link rel="stylesheet" href="components/bootstrap/dist/bootstrap.css" type="text/css" media="screen" charset="utf-8">
+	<link rel="stylesheet" href="public/style/base-style.css">
 	<script src="components/angular/angular.js"></script>
+	<script src="public/js/main.js"></script>
 	<title></title>
 </head>
-<body ng-app="theAppModule">
-	<div ng-controller="baseCopntroller as base">
+<body ng-app="base">
+	<div ng-controller="baseController as base">
 		<p>{{base.baseModel}}</p>
 	</div>
 
