@@ -1,16 +1,10 @@
 const mongoose = require('mongoose');
 const Users = mongoose.model('User');
 
-module.exports = function(app){
-	app.post('/create', function (req,res,next) {
-		var body = req.body;
-		var user = new User({body});
-		console.log(body);
-		user.save(function (err) {
-			if(err){
-				res.send(err)
-			}
-			res.json({'message': 'user created'})
-		})
-	})
+module.exports = function(req,res){
+	Users.find({},function (err,data) {
+		if(err) return next(err);
+		if(!data) return next();
+		res.status(200).json({data});
+	});
 }
