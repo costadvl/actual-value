@@ -2,17 +2,20 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 var schemaEntitie = new Schema({
+	_id: Schema.Types.ObjectId,
 	name: {
+		index: true,
+		unique: true,
 		type: String,
 		required: true,
-		unique: true
 	},
 	sector: {
 		type: String,
 		required: true
 	},
 	headquarters: {
-		type: String
+		type: String,
+		maxlength: 250,
 	},
 	web_site: {
 		type: String,
@@ -22,7 +25,18 @@ var schemaEntitie = new Schema({
 		type: Date,
 		default: Date.now
 	},
-	type: {
-		type: String
+	ranking: {
+		type: Number,
+		default: 0,
+		get: v => Math.round(v),
+		set: v => Math.round(v),
 	}
-})
+});
+
+schemaEntitie.pre('save', function (next) {
+	var entitie = this;
+	//if ()
+});
+
+// read more abouth doc.markModifield()
+console.log(schemaEntitie.path('ranking'));
