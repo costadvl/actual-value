@@ -35,8 +35,10 @@ var schemaEntitie = new Schema({
 
 schemaEntitie.pre('save', function (next) {
 	var entitie = this;
-	//if ()
+	//var err = new Error(''
+	next();
 });
 
+
 // read more abouth doc.markModifield()
-console.log(schemaEntitie.path('ranking'));
+module.exports = mongoose.model('Entitie', schemaEntitie);
