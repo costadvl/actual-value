@@ -23,25 +23,26 @@ var schemaUser = new Schema({
 		default: false
 	},
 	location: {
-		sype: String,
-		defalut: null
+		type: String,
+		default: null
 	},
 	meta: {
 		age: {
 			type: Number,
-			defalut: null
+			default: null
 		},
 		website: {
 			type: String,
 			default: null
 		},
 	},
-	created_at: Date.now,
-	updated_at: Date.now
+	created_at: {type: Date, default: new Date().toISOString()},
+	updated_at: {type: Date, default: new Date().toISOString()}
 });
 
 schemaUser.pre('save', function(next) {
 	var user = this;
+	console.log('pre save user, hashing password');
 	if (!user.isModified('password')) return next();
 	bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
 		if (err) return next(err);
@@ -55,7 +56,7 @@ schemaUser.pre('save', function(next) {
 
 schemaUser.post('save', function(err, doc, next) {
 	if (err) {
-		next(new Error('mongoose post error: save'))
+		next(new Error('user post error: save'))
 	}
 	if (doc) {
 		console.log('user saved: ', doc);

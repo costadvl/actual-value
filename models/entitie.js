@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 var schemaEntitie = new Schema({
-	_id: Schema.Types.ObjectId,
 	name: {
 		index: true,
 		unique: true,
@@ -13,13 +12,15 @@ var schemaEntitie = new Schema({
 		type: String,
 		required: true
 	},
-	headquarters: {
+	headquarters: [{
 		type: String,
 		maxlength: 250,
-	},
+		default: null
+	}],
 	web_site: {
 		type: String,
-		unique: true
+		unique: true,
+		default: null
 	},
 	updated: {
 		type: Date,
@@ -35,8 +36,18 @@ var schemaEntitie = new Schema({
 
 schemaEntitie.pre('save', function (next) {
 	var entitie = this;
-	//var err = new Error(''
+	console.log('pre save entitie');
 	next();
+});
+
+schemaEntitie.post('save', function(err, doc, next) {
+	if (err) {
+		next(new Error('entitie post error: save'))
+	}
+	if (doc) {
+		console.log('user saved: ', doc);
+		next();
+	}
 });
 
 
