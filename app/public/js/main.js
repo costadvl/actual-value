@@ -1,5 +1,5 @@
 var app = angular.module('base', []);
 app.controller('baseController', function($scope){
-	this.baseModel = 'hey dude, fine';
+	this.baseModel = 'hey dude, no so fine'
 });
 
