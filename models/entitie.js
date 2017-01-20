@@ -45,7 +45,7 @@ schemaEntitie.post('save', function(err, doc, next) {
 		next(new Error('entitie post error: save'))
 	}
 	if (doc) {
-		console.log('user saved: ', doc);
+		console.log('entitie saved: ', doc);
 		next();
 	}
 });

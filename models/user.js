@@ -36,8 +36,14 @@ var schemaUser = new Schema({
 			default: null
 		},
 	},
-	created_at: {type: Date, default: new Date().toISOString()},
-	updated_at: {type: Date, default: new Date().toISOString()}
+	created_at: {
+		type: Date,
+		default: new Date().toISOString()
+	},
+	updated_at: {
+		type: Date,
+		default: new Date().toISOString()
+	}
 });
 
 schemaUser.pre('save', function(next) {
@@ -63,12 +69,12 @@ schemaUser.post('save', function(err, doc, next) {
 		next();
 	}
 });
-//schemaUser.methods.comparePassword = function (candidatePassword, cb) {
-//bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
-//if (err) return cb(err);
-//cb(null, isMatch);
-//})
-//}
+schemaUser.methods.comparePassword = function(candidatePassword, cb) {
+	bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+		if (err) return cb(err);
+		cb(null, isMatch);
+	})
+}
 
 //schemaUser.plugin(passportLocalMongoose);
 
